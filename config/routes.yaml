@@ -1,0 +1,3 @@
+shared:
+  resource: '../src/Context/Shared/Infrastructure/Symfony/routes.yaml'
+  prefix: '/api'
