@@ -1,0 +1,4 @@
+register_user:
+  path: /user/{id}
+  controller: App\Context\User\User\UI\Controller\RegisterUserController
+  methods: [PUT]

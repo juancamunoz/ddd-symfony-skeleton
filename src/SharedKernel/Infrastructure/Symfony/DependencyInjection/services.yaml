@@ -3,5 +3,5 @@ services:
     autowire: true
     autoconfigure: true
 
-  App\Context\Shared\:
+  App\SharedKernel\:
     resource: '../../../'

@@ -1,0 +1,22 @@
+framework:
+    messenger:
+        serializer:
+            default_serializer: App\SharedKernel\Infrastructure\Bus\Serializer\MessageJsonSerializer
+        default_bus: domain_event_bus
+        buses:
+            domain_event_bus:
+                default_middleware:
+                    enabled: true
+                    allow_no_handlers: false
+                    allow_no_senders: true
+        transports:
+            async_domain_event_bus:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                retry_strategy:
+                    max_retries: 2
+                options:
+                    exchange:
+                        name: domain_events
+                        type: topic
+        routing:
+            'App\SharedKernel\Domain\Event\DomainEvent': async_domain_event_bus

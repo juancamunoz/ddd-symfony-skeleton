@@ -1,3 +1,7 @@
 shared:
-  resource: '../src/Context/Shared/Infrastructure/Symfony/routes.yaml'
+  resource: '../src/SharedKernel/Infrastructure/Symfony/routes.yaml'
+  prefix: '/api'
+
+users:
+  resource: '../src/Context/User/User/Infrastructure/Symfony/routes.yaml'
   prefix: '/api'

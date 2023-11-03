@@ -1,2 +1,3 @@
 imports:
-    - { resource: '../src/Context/Shared/Infrastructure/Symfony/DependencyInjection/services.yaml' }
+    - { resource: '../src/SharedKernel/Infrastructure/Symfony/DependencyInjection/services.yaml' }
+    - { resource: '../src/Context/User/User/Infrastructure/Symfony/DependencyInjection/services.yaml' }
