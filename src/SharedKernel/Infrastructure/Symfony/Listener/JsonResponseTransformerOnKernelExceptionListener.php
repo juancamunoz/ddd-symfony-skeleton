@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Context\Shared\Infrastructure\Symfony\Listener;
+namespace App\Shared\Infrastructure\Symfony\Listener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
