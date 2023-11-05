@@ -4,7 +4,7 @@ namespace App\Context\Auth\User\Domain\Repository\Criteria;
 
 class SearchUserCriteria
 {
-    private function __construct(private readonly string $email)
+    private function __construct(private readonly ?string $email)
     {
     }
 
@@ -13,7 +13,12 @@ class SearchUserCriteria
         return new self($email);
     }
 
-    public function email(): string
+    public function hasEmail(): bool
+    {
+        return !empty($this->email);
+    }
+
+    public function email(): ?string
     {
         return $this->email;
     }
