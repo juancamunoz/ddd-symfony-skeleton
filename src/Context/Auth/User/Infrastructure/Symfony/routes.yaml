@@ -1,0 +1,9 @@
+register_user:
+  path: /user/{id}
+  controller: App\Context\Auth\User\UI\Controller\RegisterUserController
+  methods: [PUT]
+
+find_user:
+  path: /user
+  controller: App\Context\Auth\User\UI\Controller\SearchUsersController
+  methods: [GET]

@@ -21,6 +21,7 @@ class JsonResponseTransformerOnKernelExceptionListener implements EventSubscribe
 
         if ($exception instanceof HttpException) {
             $event->setResponse(new JsonResponse([
+                'error_code' => $exception->getStatusCode(),
                 'message' => $exception->getMessage()
             ], $exception->getStatusCode()));
         }

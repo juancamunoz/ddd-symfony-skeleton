@@ -3,5 +3,5 @@ shared:
   prefix: '/api'
 
 users:
-  resource: '../src/Context/User/User/Infrastructure/Symfony/routes.yaml'
+  resource: '../src/Context/Auth/User/Infrastructure/Symfony/routes.yaml'
   prefix: '/api'

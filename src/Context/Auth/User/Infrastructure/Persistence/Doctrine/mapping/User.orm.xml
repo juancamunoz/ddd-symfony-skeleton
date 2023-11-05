@@ -1,0 +1,6 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity name="App\Context\Auth\User\Domain\User" table="users">
+        <id name="id" type="string" length="36" column="id" />
+        <field name="email" type="string" length="250" column="email" />
+    </entity>
+</doctrine-mapping>
