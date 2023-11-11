@@ -1,7 +1,5 @@
 security:
     enable_authenticator_manager: true
-    password_hashers:
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     providers:
         jwt_user:
             id: App\SharedKernel\Infrastructure\Symfony\Security\JwtUserProvider
