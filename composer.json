@@ -11,7 +11,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.16",
         "lambdish/phunctional": "^2.1",
-        "lexik/jwt-authentication-bundle": "^2.19",
+        "lcobucci/jwt": "^5.1",
         "symfony/amqp-messenger": "6.3.*",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",

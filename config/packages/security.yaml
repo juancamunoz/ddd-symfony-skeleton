@@ -3,26 +3,18 @@ security:
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     providers:
-        users_in_memory:
-            memory:
-                users:
-                    admin:
-                        password: $2y$13$C19Pk5kmHVWMkz6Dfuwx9eKkHRoTqJIbcB1thls073jekNxNBlu.e #admin
-                        roles: 'ROLE_ADMIN'
+        jwt_user:
+            id: App\SharedKernel\Infrastructure\Symfony\Security\JwtUserProvider
     firewalls:
-        login:
-            pattern: ^/api/login
-            stateless: true
-            json_login:
-                check_path: /api/login_check
-                success_handler: lexik_jwt_authentication.handler.authentication_success
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure
-
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
         api:
             pattern: ^/api
             stateless: true
-            jwt: ~
+            custom_authenticators:
+                - App\SharedKernel\Infrastructure\Symfony\Security\JwtAuthenticator
 
     access_control:
-        - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/user, roles: [ ROLE_ADMIN ] }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
