@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    bind:
+      $base64RsaKey: '%env(JWT_SIGN_KEY)%'
+    autowire: true
+    autoconfigure: true
+
+  App\Tests\Acceptance\:
+    resource: '../tests/Acceptance/*'

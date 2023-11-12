@@ -1,0 +1,12 @@
+default:
+    suites:
+        default:
+            paths:
+                features: tests/Acceptance
+            contexts:
+                - App\Tests\Acceptance\SharedKernel\SharedContext
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            bootstrap: tests/bootstrap.php
+            kernel:
+                class: App\SharedKernel\Infrastructure\Symfony\Kernel
