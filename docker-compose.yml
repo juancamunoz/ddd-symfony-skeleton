@@ -63,6 +63,23 @@ services:
     networks:
       - ddd-skeleton-network
 
+  ddd-skeleton-supervisor:
+    container_name: ddd-skeleton-supervisor
+    build:
+      context: docker/php
+      args:
+        UID: $U_ID
+    user: root
+    command: supervisord
+    volumes:
+      - ./:/appdata/www
+      - ./docker/supervisor/workers.conf:/etc/supervisor/conf.d/workers.conf
+    depends_on:
+      - ddd-skeleton-db
+      - ddd-skeleton-rabbitmq
+    networks:
+      - ddd-skeleton-network
+
 volumes:
   ddd-skeleton-db-data:
 

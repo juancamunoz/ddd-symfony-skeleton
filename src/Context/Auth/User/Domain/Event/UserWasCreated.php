@@ -29,7 +29,7 @@ class UserWasCreated extends DomainEvent
 
     protected function boundedContext(): string
     {
-        return 'users';
+        return 'auth';
     }
 
     protected function messageName(): string

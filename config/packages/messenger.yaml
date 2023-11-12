@@ -2,15 +2,15 @@ framework:
     messenger:
         serializer:
             default_serializer: App\SharedKernel\Infrastructure\Bus\Serializer\MessageJsonSerializer
-        default_bus: domain_event_bus
+        default_bus: auth_domain_event_bus
         buses:
-            domain_event_bus:
+            auth_domain_event_bus:
                 default_middleware:
                     enabled: true
                     allow_no_handlers: false
                     allow_no_senders: true
         transports:
-            async_domain_event_bus:
+            async_auth_domain_event_bus:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
                 retry_strategy:
                     max_retries: 2
@@ -18,5 +18,9 @@ framework:
                     exchange:
                         name: domain_events
                         type: topic
+                    queues:
+                        auth_domain_events_queue:
+                            binding_keys:
+                                - 'company_name.auth.domain_event.#'
         routing:
-            'App\SharedKernel\Domain\Event\DomainEvent': async_domain_event_bus
+            'App\SharedKernel\Domain\Event\DomainEvent': async_auth_domain_event_bus

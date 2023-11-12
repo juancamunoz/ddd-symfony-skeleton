@@ -14,5 +14,6 @@ security:
                 - App\SharedKernel\Infrastructure\Symfony\Security\JwtAuthenticator
 
     access_control:
+        - { path: ^/api/user/*, roles: PUBLIC_ACCESS }
         - { path: ^/api/user, roles: [ ROLE_ADMIN ] }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
