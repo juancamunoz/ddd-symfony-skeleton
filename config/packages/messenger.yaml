@@ -5,10 +5,7 @@ framework:
         default_bus: auth_domain_event_bus
         buses:
             auth_domain_event_bus:
-                default_middleware:
-                    enabled: true
-                    allow_no_handlers: false
-                    allow_no_senders: true
+                default_middleware: allow_no_handlers
         transports:
             async_auth_domain_event_bus:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
@@ -23,4 +20,4 @@ framework:
                             binding_keys:
                                 - 'company_name.auth.domain_event.#'
         routing:
-            'App\SharedKernel\Domain\Event\DomainEvent': async_auth_domain_event_bus
+            'App\Context\Auth\Event\AuthDomainEvent': async_auth_domain_event_bus

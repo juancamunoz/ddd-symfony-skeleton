@@ -31,8 +31,26 @@ copy-files: ## Creates a copy of .env and docker-compose.yml.dist file to use lo
 composer-install: ## Installs composer dependencies
 	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} composer install --no-scripts --no-interaction --optimize-autoloader
 
-ssh-be: ## ssh's into the be container
+cli: ## ssh's into the be container
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} bash
 
 container-names: ## change default container names (need param name)
 	find . -type f -exec sed -i 's/ddd-skeleton/$(name)/g' {} +
+
+reset-symfony-test-cache: ## clear testing cache
+	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} bin/console cache:clear --env=test
+
+recreate-db:
+	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} bin/console d:sc:drop -n -q -f --full-database
+	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} bin/console d:mi:mi -n
+
+load-db-fixtures:
+	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} bin/console d:f:load -n
+
+test-unit:
+	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} bin/phpunit
+
+test-acceptance-behat:
+	make reset-symfony-test-cache
+	make load-db-fixtures
+	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} vendor/bin/behat

@@ -17,21 +17,32 @@ final class SharedContext implements Context
     private ?Response $response;
     private HeaderBag $headers;
 
-    public function __construct(private readonly KernelInterface $kernel, private readonly string $base64RsaKey)
+    public function __construct(private readonly KernelInterface $kernel)
     {
-        $this->headers = new HeaderBag();
+        $this->headers = new HeaderBag([
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ]);
     }
 
     /**
      * @When I send a :method request to :path
      */
-    public function iSendARequestTo(string $method, string $path): void
+    public function iSendARequestTo(string $method, string $path, PyStringNode $body = null): void
     {
-        $request = Request::create($path, $method);
+        $request = Request::create($path, $method, [], [], [], [], $body?->getRaw());
 
         $request->headers->replace($this->headers->all());
 
         $this->response = $this->kernel->handle($request);
+    }
+
+    /**
+     * @When I send a :method request to :path with body:
+     */
+    public function iSendARequestToWithBody(string $method, string $path, PyStringNode $body): void
+    {
+        $this->iSendARequestTo($method, $path, $body);
     }
 
     /**

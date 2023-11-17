@@ -23,6 +23,6 @@ class RequestJsonDataReplacerOnKernelRequestListener implements EventSubscriberI
 
         $data = json_decode($event->getRequest()->getContent(), true);
 
-        $event->getRequest()->request->replace($data);
+        $event->getRequest()->request->replace($data ?? []);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Context\Auth\User\Domain\Event;
 
-use App\SharedKernel\Domain\Event\DomainEvent;
+use App\Context\Auth\Event\AuthDomainEvent;
 
-class UserWasCreated extends DomainEvent
+class UserWasCreated extends AuthDomainEvent
 {
     const AGGREGATE_ROOT_ID_KEY = 'aggregate_root_id';
     const EMAIL_KEY = 'email';
@@ -27,13 +27,8 @@ class UserWasCreated extends DomainEvent
         return $this->get(self::EMAIL_KEY);
     }
 
-    protected function boundedContext(): string
-    {
-        return 'auth';
-    }
-
     protected function messageName(): string
     {
-        return 'user_created';
+        return 'user.user_created';
     }
 }
