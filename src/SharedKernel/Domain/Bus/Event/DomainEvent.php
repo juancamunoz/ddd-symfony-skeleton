@@ -1,6 +1,8 @@
 <?php
 
-namespace App\SharedKernel\Domain\Event;
+namespace App\SharedKernel\Domain\Bus\Event;
+
+use App\SharedKernel\Domain\Event\Message;
 
 abstract class DomainEvent extends Message
 {

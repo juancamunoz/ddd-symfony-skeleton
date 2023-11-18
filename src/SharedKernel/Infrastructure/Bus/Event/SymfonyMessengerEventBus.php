@@ -2,8 +2,8 @@
 
 namespace App\SharedKernel\Infrastructure\Bus\Event;
 
-use App\SharedKernel\Domain\Bus\EventBus;
-use App\SharedKernel\Domain\Event\DomainEvent;
+use App\SharedKernel\Domain\Bus\Event\DomainEvent;
+use App\SharedKernel\Domain\Bus\Event\EventBus;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;

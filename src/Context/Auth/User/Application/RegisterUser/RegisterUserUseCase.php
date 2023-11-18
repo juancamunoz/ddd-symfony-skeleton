@@ -4,7 +4,7 @@ namespace App\Context\Auth\User\Application\RegisterUser;
 
 use App\Context\Auth\User\Domain\Repository\UserRepository;
 use App\Context\Auth\User\Domain\User;
-use App\SharedKernel\Domain\Bus\EventBus;
+use App\SharedKernel\Domain\Bus\Event\EventBus;
 
 class RegisterUserUseCase
 {

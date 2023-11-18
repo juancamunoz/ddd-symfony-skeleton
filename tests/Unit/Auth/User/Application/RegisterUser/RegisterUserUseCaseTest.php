@@ -6,7 +6,7 @@ use App\Context\Auth\User\Application\RegisterUser\RegisterUserUseCase;
 use App\Context\Auth\User\Domain\Event\UserWasCreated;
 use App\Context\Auth\User\Domain\Repository\UserRepository;
 use App\Context\Auth\User\Domain\User;
-use App\SharedKernel\Domain\Bus\EventBus;
+use App\SharedKernel\Domain\Bus\Event\EventBus;
 use App\Tests\Unit\SharedKernel\UnitTestCase;
 
 class RegisterUserUseCaseTest extends UnitTestCase

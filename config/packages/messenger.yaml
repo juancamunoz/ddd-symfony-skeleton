@@ -2,9 +2,20 @@ framework:
     messenger:
         serializer:
             default_serializer: App\SharedKernel\Infrastructure\Bus\Serializer\MessageJsonSerializer
-        default_bus: auth_domain_event_bus
+        default_bus: messenger.bus.auth.commands
         buses:
-            auth_domain_event_bus:
+            messenger.bus.auth.commands:
+                default_middleware: false
+                middleware:
+                    - doctrine_ping_connection
+                    - dispatch_after_current_bus
+                    - doctrine_transaction
+                    - handle_message
+            messenger.bus.auth.queries:
+                default_middleware: false
+                middleware:
+                    - handle_message
+            messenger.bus.auth.events:
                 default_middleware: allow_no_handlers
         transports:
             async_auth_domain_event_bus:

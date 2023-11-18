@@ -3,9 +3,9 @@
 namespace App\Context\Auth\User\Application\SendEmail;
 
 use App\Context\Auth\User\Domain\Event\UserWasCreated;
-use App\SharedKernel\Domain\Event\DomainEventListener;
+use App\SharedKernel\Domain\Bus\Event\DomainEventListenerInterface;
 
-class OnUserRegisteredSendEmailListener implements DomainEventListener
+class OnUserRegisteredSendEmailListener implements DomainEventListenerInterface
 {
     public function __invoke(UserWasCreated $event): void
     {

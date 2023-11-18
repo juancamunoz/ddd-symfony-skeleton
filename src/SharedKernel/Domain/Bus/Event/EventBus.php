@@ -1,8 +1,6 @@
 <?php
 
-namespace App\SharedKernel\Domain\Bus;
-
-use App\SharedKernel\Domain\Event\DomainEvent;
+namespace App\SharedKernel\Domain\Bus\Event;
 
 interface EventBus
 {

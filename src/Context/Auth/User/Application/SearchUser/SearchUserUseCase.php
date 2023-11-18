@@ -4,14 +4,15 @@ namespace App\Context\Auth\User\Application\SearchUser;
 
 use App\Context\Auth\User\Domain\Repository\Criteria\SearchUserCriteria;
 use App\Context\Auth\User\Domain\Repository\UserRepository;
+use App\Context\Auth\User\Domain\User;
 
-class SearchUsersUseCase
+class SearchUserUseCase
 {
     public function __construct(private readonly UserRepository $repository)
     {
     }
 
-    public function __invoke(string $email): ?array
+    public function __invoke(string $email): ?User
     {
         $users = $this->repository->findByCriteria(SearchUserCriteria::create($email));
 
@@ -19,11 +20,6 @@ class SearchUsersUseCase
             return null;
         }
 
-        $user = current($users);
-
-        return [
-            'id' => $user->id(),
-            'email' => $user->email()
-        ];
+        return current($users);
     }
 }

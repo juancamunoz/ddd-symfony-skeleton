@@ -2,7 +2,7 @@
 
 namespace App\SharedKernel\Domain\Aggregate;
 
-use App\SharedKernel\Domain\Event\DomainEvent;
+use App\SharedKernel\Domain\Bus\Event\DomainEvent;
 
 abstract class AggregateRoot
 {

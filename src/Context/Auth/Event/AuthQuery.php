@@ -2,9 +2,9 @@
 
 namespace App\Context\Auth\Event;
 
-use App\SharedKernel\Domain\Bus\Event\DomainEvent;
+use App\SharedKernel\Domain\Bus\Query\Query;
 
-abstract class AuthDomainEvent extends DomainEvent
+abstract class AuthQuery extends Query
 {
     protected function boundedContext(): string
     {

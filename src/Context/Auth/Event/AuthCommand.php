@@ -2,9 +2,9 @@
 
 namespace App\Context\Auth\Event;
 
-use App\SharedKernel\Domain\Bus\Event\DomainEvent;
+use App\SharedKernel\Domain\Bus\Command\Command;
 
-abstract class AuthDomainEvent extends DomainEvent
+abstract class AuthCommand extends Command
 {
     protected function boundedContext(): string
     {

@@ -2,16 +2,42 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
+    bind:
+      $commandBus: '@context.auth.application.command_bus'
+      $queryBus: '@context.auth.application.query_bus'
+      $eventBus: '@context.auth.application.event_bus'
 
   App\Context\Auth\User\:
     resource: '../../../'
 
   _instanceof:
     App\SharedKernel\Domain\Event\Message:
-      tags: ['bus.messages']
-    App\SharedKernel\Domain\Event\DomainEventListener:
-      tags: ['messenger.message_handler']
+      tags: ['context.auth.messages']
+
+    App\SharedKernel\Domain\Bus\Event\DomainEventListenerInterface:
+      tags: [{ name: messenger.message_handler, bus: messenger.bus.auth.events }]
+
+    App\SharedKernel\Domain\Bus\Command\CommandHandlerInterface:
+      tags: [{ name: messenger.message_handler, bus: messenger.bus.auth.commands }]
+
+    App\SharedKernel\Domain\Bus\Query\QueryHandlerInterface:
+      tags: [{ name: messenger.message_handler, bus: messenger.bus.auth.queries }]
 
   App\SharedKernel\Infrastructure\Bus\Serializer\MessageJsonSerializer:
     arguments:
-      - !tagged_iterator bus.messages
+      - !tagged_iterator context.auth.messages
+
+  context.auth.application.command_bus:
+    class: App\SharedKernel\Infrastructure\Bus\Command\SymfonyMessengerCommandBus
+    arguments:
+      - '@messenger.bus.auth.commands'
+
+  context.auth.application.query_bus:
+    class: App\SharedKernel\Infrastructure\Bus\Query\SymfonyMessengerQueryBus
+    arguments:
+      - '@messenger.bus.auth.queries'
+
+  context.auth.application.event_bus:
+    class: App\SharedKernel\Infrastructure\Bus\Event\SymfonyMessengerEventBus
+    arguments:
+      - '@messenger.bus.auth.events'
