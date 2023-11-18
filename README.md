@@ -12,7 +12,7 @@ This repository contains the basic configuration for a complete local environmen
 ### 🖱️ Installation:
 - Run `make build` to create all containers
 - Run `make up` to spin up containers
-- Run `make composer-install` to spin up containers
+- Run `make composer-install` to install all needed dependencies
 - Enter the PHP container with `make cli`
 - Run `make test-unit` and `make test-acceptance-behat` to execute unit & acceptance tests
 - Move `.env.example` to `.env` and fill necessary data
