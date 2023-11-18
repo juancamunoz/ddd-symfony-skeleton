@@ -9,6 +9,6 @@ class OnUserRegisteredSendEmailListener implements DomainEventListenerInterface
 {
     public function __invoke(UserWasCreated $event): void
     {
-        file_put_contents(__DIR__ . '/test.txt', json_encode($event->toArray()));
+        // send email...
     }
 }
