@@ -1,21 +1,19 @@
-# Boilerplate for projects with PHP 8.2 FPM, MySQL 8.0 and Nginx with Docker & Docker Compose
+# 🍲 Boilerplate for Symfony DDD Projects
 
-This repository contains the basic configuration for a complete local environment for Laravel Projects with docker
+This repository contains the basic configuration for a complete local environment for Symfony Projects with docker
 
-### Content:
+### 📘 Content:
 - NGINX 1.19 container to handle HTTP requests
-- PHP 8.2 container to host your Laravel application
+- PHP 8.2 container to host your Symfony application
 - MySQL 8.0 container to store databases
+- RabbitMQ 3 container to handle asynchronous messages
+- Supervisor container to create workers for handling asynchronous messages
 
-### Installation:
-- Run `make container-names name=desired-container-names` to change the default `app-docker` container names
+### 🖱️ Installation:
 - Run `make build` to create all containers
 - Run `make up` to spin up containers
-- Enter the PHP container with `make ssh-be`
-- Install the desired PHP framework
-  + Laravel: `composer create-project laravel/laravel app`
-  + Symfony: `composer create-project symfony/skeleton:"6.3.*" app`
-- Move the content to the root folder with `mv app/* .`. This is necessary since Composer won't install the project if the folder already contains data.
-- Copy the hidden files in the app folder `.gitignore .env .env.example` and paste it in the root's folder
-- Remove `app` folder (not needed anymore)
-- Navigate to `localhost:1000` so you can see the running webserver
+- Run `make composer-install` to spin up containers
+- Enter the PHP container with `make cli`
+- Run `make test-unit` and `make test-acceptance-behat` to execute unit & acceptance tests
+- Move `.env.example` to `.env` and fill necessary data
+- Navigate to `localhost:1000` so you can see the running application
